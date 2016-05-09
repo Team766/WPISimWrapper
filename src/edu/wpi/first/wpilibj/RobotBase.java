@@ -61,13 +61,14 @@ public abstract class RobotBase {
 		// TODO: See if the next line is necessary
 		// Resource.RestartProgram();
 
-		NetworkTable.setNetworkIdentity("Robot");
-		NetworkTable.setPersistentFilename("/home/lvuser/networktables.ini");
-		NetworkTable.setServerMode();// must be before b
+		//Renable network table, once running!
+//		NetworkTable.setNetworkIdentity("Robot");
+//		NetworkTable.setPersistentFilename("/home/lvuser/networktables.ini");
+//		NetworkTable.setServerMode();// must be before b
 		m_ds = DriverStation.getInstance();
-		NetworkTable.getTable(""); // forces network tables to initialize
-		NetworkTable.getTable("LiveWindow").getSubTable("~STATUS~")
-				.putBoolean("LW Enabled", false);
+//		NetworkTable.getTable(""); // forces network tables to initialize
+//		NetworkTable.getTable("LiveWindow").getSubTable("~STATUS~")
+//				.putBoolean("LW Enabled", false);
 	}
 
 	/**
@@ -186,25 +187,26 @@ public abstract class RobotBase {
 		startSimulator();
 		initializeHardwareConfiguration();
 
-		UsageReporting.report(tResourceType.kResourceType_Language,
-				tInstances.kLanguage_Java);
+		UsageReporting.report(tResourceType.kResourceType_Language, tInstances.kLanguage_Java);
 
 		String robotName = "";
 		Enumeration<URL> resources = null;
 		try {
-			resources = RobotBase.class.getClassLoader().getResources(
-					"META-INF/MANIFEST.MF");
+			resources = RobotBase.class.getClassLoader().getResources("META-INF/MANIFEST.MF");
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("Failed to read Manifest");
 		}
 		while (resources != null && resources.hasMoreElements()) {
 			try {
-				Manifest manifest = new Manifest(resources.nextElement()
-						.openStream());
-				robotName = manifest.getMainAttributes()
-						.getValue("Robot-Class");
+				Manifest manifest = new Manifest(resources.nextElement().openStream());
+				System.out.println("Keys: " + manifest.getEntries().keySet().toString());
+				
+				robotName = manifest.getMainAttributes().getValue("Robot-Class");
+				System.out.println("RobotName: " + robotName);
 			} catch (IOException e) {
 				e.printStackTrace();
+				System.out.println("Failed to load Manifest");
 			}
 		}
 
@@ -219,6 +221,9 @@ public abstract class RobotBase {
 			System.err.println("WARNING: Robots don't quit!");
 			System.err.println("ERROR: Could not instantiate robot "
 					+ robotName + "!");
+			System.out.println("Message: " + t.getMessage());
+			System.out.println("ERROR Unhandled exception instantiating robot " + robotName + " " + t.toString() + " at "
+							+ Arrays.toString(t.getStackTrace()));
 			System.exit(1);
 			return;
 		}
