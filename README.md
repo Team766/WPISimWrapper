@@ -10,3 +10,12 @@ After deploying, a window opens which functions as the [Driver Station](https://
   * Basic controls for moving
     * Hot keys on keyboard to perform certain tasks
     * Replicates functionality of joystick buttons
+
+
+##Instructions for Testing:##
+Instructions on how to currenlty deploy robot code to the simulator in eclipse.
+  1. Download WPISimWrapper
+  2. Export the robot code with the [src](https://github.com/Team766/WPISimWrapper/tree/master/src) folder in this repository
+  3. Specify the jar manifest to be the one in the [Manifest](https://github.com/Team766/WPISimWrapper/tree/master/META-INF) folder
+  4. Launch the simulator
+  5. Run the jar file in a command line: *java -jar Combined.jar*
