@@ -12,113 +12,214 @@ import java.nio.LongBuffer;
 
 public class AnalogJNI extends JNIWrapper {
   /**
-   * <i>native declaration :
+   * <i>declaration :
    * AthenaJava\target\native\include\HAL\Analog.h:58</i><br>
    * enum values
    */
   public static interface AnalogTriggerType {
     /**
-     * <i>native declaration :
+     * <i>declaration :
      * AthenaJava\target\native\include\HAL\Analog.h:54</i>
      */
     public static final int kInWindow = 0;
     /**
-     * <i>native declaration :
+     * <i>declaration :
      * AthenaJava\target\native\include\HAL\Analog.h:55</i>
      */
     public static final int kState = 1;
     /**
-     * <i>native declaration :
+     * <i>declaration :
      * AthenaJava\target\native\include\HAL\Analog.h:56</i>
      */
     public static final int kRisingPulse = 2;
     /**
-     * <i>native declaration :
+     * <i>declaration :
      * AthenaJava\target\native\include\HAL\Analog.h:57</i>
      */
     public static final int kFallingPulse = 3;
   };
 
-  public static native long initializeAnalogInputPort(long port_pointer);
+  public static long initializeAnalogInputPort(long port_pointer){
+	  System.out.println("AnalogJNI: initializeAnalogInputPort()");
+	  return 1;
+  }
 
-  public static native void freeAnalogInputPort(long port_pointer);
+  public static void freeAnalogInputPort(long port_pointer){
+	  System.out.println("AnalogJNI: freeAnalogInputPort()");
+  }
 
-  public static native long initializeAnalogOutputPort(long port_pointer);
+  public static long initializeAnalogOutputPort(long port_pointer){
+	  System.out.println("AnalogJNI: initializeAnalogOutputPort()");
+	  return 1;
+  }
 
-  public static native void freeAnalogOutputPort(long port_pointer);
+  public static void freeAnalogOutputPort(long port_pointer){
+	  System.out.println("AnalogJNI: freeAnalogOutputPort()");
+  }
 
-  public static native boolean checkAnalogModule(byte module);
+  public static boolean checkAnalogModule(byte module){
+	  System.out.println("AnalogJNI: checkAnalogModule()");
+	  return true;
+  }
 
-  public static native boolean checkAnalogInputChannel(int pin);
+  public static boolean checkAnalogInputChannel(int pin){
+	  System.out.println("AnalogJNI: checkAnalogInputChannel()");
+	  return true;
+  }
 
-  public static native boolean checkAnalogOutputChannel(int pin);
+  public static boolean checkAnalogOutputChannel(int pin){
+	  System.out.println("AnalogJNI: checkAnalogOutputChannel()");
+	  return true;
+  }
 
-  public static native void setAnalogOutput(long port_pointer, double voltage);
+  public static void setAnalogOutput(long port_pointer, double voltage){
+	  System.out.println("AnalogJNI: setAnalogOutput()");
+  }
 
-  public static native double getAnalogOutput(long port_pointer);
+  public static double getAnalogOutput(long port_pointer){
+	  System.out.println("AnalogJNI: getAnalogOutput()");
+	  return 1;
+  }
 
-  public static native void setAnalogSampleRate(double samplesPerSecond);
+  public static void setAnalogSampleRate(double samplesPerSecond){
+	  System.out.println("AnalogJNI: setAnalogSampleRate()");
+  }
 
-  public static native double getAnalogSampleRate();
+  public static double getAnalogSampleRate(){
+	  System.out.println("AnalogJNI: getAnalogSampleRate()");
+	  return 1;
+  }
 
-  public static native void setAnalogAverageBits(long analog_port_pointer, int bits);
+  public static void setAnalogAverageBits(long analog_port_pointer, int bits){
+	  System.out.println("AnalogJNI: setAnalogAverageBits()");
+  }
 
-  public static native int getAnalogAverageBits(long analog_port_pointer);
+  public static int getAnalogAverageBits(long analog_port_pointer){
+	  System.out.println("AnalogJNI: getAnalogAverageBits()");
+	  return 1;
+  }
 
-  public static native void setAnalogOversampleBits(long analog_port_pointer, int bits);
+  public static void setAnalogOversampleBits(long analog_port_pointer, int bits){
+	  System.out.println("AnalogJNI: setAnalogOversampleBits()");
+  }
 
-  public static native int getAnalogOversampleBits(long analog_port_pointer);
+  public static int getAnalogOversampleBits(long analog_port_pointer){
+	  System.out.println("AnalogJNI: getAnalogOversampleBits()");
+	  return 1;
+  }
 
-  public static native short getAnalogValue(long analog_port_pointer);
+  public static short getAnalogValue(long analog_port_pointer){
+	  System.out.println("AnalogJNI: getAnalogValue()");
+	  return 1;
+  }
 
-  public static native int getAnalogAverageValue(long analog_port_pointer);
+  public static int getAnalogAverageValue(long analog_port_pointer){
+	  System.out.println("AnalogJNI: getAnalogAverageValue()");
+	  return 1;
+  }
 
-  public static native int getAnalogVoltsToValue(long analog_port_pointer, double voltage);
+  public static int getAnalogVoltsToValue(long analog_port_pointer, double voltage){
+	  System.out.println("AnalogJNI: getAnalogVoltsToValue()");
+	  return 1;
+  }
 
-  public static native double getAnalogVoltage(long analog_port_pointer);
+  public static double getAnalogVoltage(long analog_port_pointer){
+	  System.out.println("AnalogJNI: getAnalogVoltage()");
+	  return 1;
+  }
 
-  public static native double getAnalogAverageVoltage(long analog_port_pointer);
+  public static double getAnalogAverageVoltage(long analog_port_pointer){
+	  System.out.println("AnalogJNI: getAnalogAverageVoltage()");
+	  return 1;
+  }
 
-  public static native int getAnalogLSBWeight(long analog_port_pointer);
+  public static int getAnalogLSBWeight(long analog_port_pointer){
+	  System.out.println("AnalogJNI: getAnalogLSBWeight()");
+	  return 1;
+  }
 
-  public static native int getAnalogOffset(long analog_port_pointer);
+  public static int getAnalogOffset(long analog_port_pointer){
+	  System.out.println("AnalogJNI: getAnalogOffset()");
+	  return 1;
+  }
 
-  public static native boolean isAccumulatorChannel(long analog_port_pointer);
+  public static boolean isAccumulatorChannel(long analog_port_pointer){
+	  System.out.println("AnalogJNI: isAccumulatorChannel()");
+	  return true;
+  }
 
-  public static native void initAccumulator(long analog_port_pointer);
+  public static void initAccumulator(long analog_port_pointer){
+	  System.out.println("AnalogJNI: initAccumulator()");
+  }
 
-  public static native void resetAccumulator(long analog_port_pointer);
+  public static void resetAccumulator(long analog_port_pointer){
+	  System.out.println("AnalogJNI: resetAccumulator()");
+  }
 
-  public static native void setAccumulatorCenter(long analog_port_pointer, int center);
+  public static void setAccumulatorCenter(long analog_port_pointer, int center){
+	  System.out.println("AnalogJNI: setAccumulatorCenter()");
+  }
 
-  public static native void setAccumulatorDeadband(long analog_port_pointer, int deadband);
+  public static void setAccumulatorDeadband(long analog_port_pointer, int deadband){
+	  System.out.println("AnalogJNI: setAccumulatorDeadband()");
+  }
 
-  public static native long getAccumulatorValue(long analog_port_pointer);
+  public static long getAccumulatorValue(long analog_port_pointer){
+	  System.out.println("AnalogJNI: getAccumulatorValue()");
+	  return 1;
+  }
 
-  public static native int getAccumulatorCount(long analog_port_pointer);
+  public static int getAccumulatorCount(long analog_port_pointer){
+	  System.out.println("AnalogJNI: getAccumulatorCount()");
+	  return 1;
+  }
 
-  public static native void getAccumulatorOutput(long analog_port_pointer, LongBuffer value,
-      IntBuffer count);
+  public static void getAccumulatorOutput(long analog_port_pointer, LongBuffer value,
+      IntBuffer count){
+    	  System.out.println("AnalogJNI: getAccumulatorOutput()");
+      }
 
-  public static native long initializeAnalogTrigger(long port_pointer, IntBuffer index);
+  public static long initializeAnalogTrigger(long port_pointer, IntBuffer index){
+	  System.out.println("AnalogJNI: initializeAnalogTrigger()");
+	  return 1;
+  }
 
-  public static native void cleanAnalogTrigger(long analog_trigger_pointer);
+  public static void cleanAnalogTrigger(long analog_trigger_pointer){
+	  System.out.println("AnalogJNI: cleanAnalogTrigger()");
+  }
 
-  public static native void setAnalogTriggerLimitsRaw(long analog_trigger_pointer, int lower,
-      int upper);
+  public static void setAnalogTriggerLimitsRaw(long analog_trigger_pointer, int lower,
+      int upper){
+    	  System.out.println("AnalogJNI: setAnalogTriggerLimitsRaw()");
+      }
 
-  public static native void setAnalogTriggerLimitsVoltage(long analog_trigger_pointer,
-      double lower, double upper);
+  public static void setAnalogTriggerLimitsVoltage(long analog_trigger_pointer,
+      double lower, double upper){
+    	  System.out.println("AnalogJNI: setAnalogTriggerLimitsVoltage()");
+      }
 
-  public static native void setAnalogTriggerAveraged(long analog_trigger_pointer,
-      boolean useAveragedValue);
+  public static void setAnalogTriggerAveraged(long analog_trigger_pointer,
+      boolean useAveragedValue){
+    	  System.out.println("AnalogJNI: setAnalogTriggerAveraged()");
+      }
 
-  public static native void setAnalogTriggerFiltered(long analog_trigger_pointer,
-      boolean useFilteredValue);
+  public static void setAnalogTriggerFiltered(long analog_trigger_pointer,
+      boolean useFilteredValue){
+    	  System.out.println("AnalogJNI: setAnalogTriggerFiltered()");
+      }
 
-  public static native boolean getAnalogTriggerInWindow(long analog_trigger_pointer);
+  public static boolean getAnalogTriggerInWindow(long analog_trigger_pointer){
+	  System.out.println("AnalogJNI: getAnalogTriggerInWindow()");
+	  return false;
+  }
 
-  public static native boolean getAnalogTriggerTriggerState(long analog_trigger_pointer);
+  public static boolean getAnalogTriggerTriggerState(long analog_trigger_pointer){
+	  System.out.println("AnalogJNI: getAnalogTriggerTriggerState()");
+	  return true;
+  }
 
-  public static native boolean getAnalogTriggerOutput(long analog_trigger_pointer, int type);
+  public static boolean getAnalogTriggerOutput(long analog_trigger_pointer, int type){
+	  System.out.println("AnalogJNI: getAnalogTriggerOutput()");
+	  return true;
+  }
 }

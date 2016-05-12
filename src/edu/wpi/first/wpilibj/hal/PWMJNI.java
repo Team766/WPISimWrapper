@@ -8,25 +8,50 @@
 package edu.wpi.first.wpilibj.hal;
 
 public class PWMJNI extends DIOJNI {
-  public static native boolean allocatePWMChannel(long digital_port_pointer);
+  public static boolean allocatePWMChannel(long digital_port_pointer){
+	  System.out.println("PWMJNI: allocatePWMChannel()");
+	  return true;
+  }
 
-  public static native void freePWMChannel(long digital_port_pointer);
+  public static void freePWMChannel(long digital_port_pointer){
+	  System.out.println("PWMJNI: freePWMChannel()");
+  }
 
-  public static native void setPWM(long digital_port_pointer, short value);
+  public static void setPWM(long digital_port_pointer, short value){
+	  System.out.println("PWMJNI: setPWM()");
+  }
 
-  public static native short getPWM(long digital_port_pointer);
+  public static short getPWM(long digital_port_pointer){
+	  System.out.println("PWMJNI: getPWM()");
+	  return 1;
+  }
 
-  public static native void latchPWMZero(long digital_port_pointer);
+  public static void latchPWMZero(long digital_port_pointer){
+	  System.out.println("PWMJNI: latchPWMZero()");
+  }
 
-  public static native void setPWMPeriodScale(long digital_port_pointer, int squelchMask);
+  public static void setPWMPeriodScale(long digital_port_pointer, int squelchMask){
+	  System.out.println("PWMJNI: setPWMPeriodScale()");
+  }
 
-  public static native long allocatePWM();
+  public static long allocatePWM(){
+	  System.out.println("PWMJNI: allocatePWM()");
+	  return 1;
+  }
 
-  public static native void freePWM(long pwmGenerator);
+  public static void freePWM(long pwmGenerator){
+	  System.out.println("PWMJNI: freePWM()");
+  }
+  
+  public static void setPWMRate(double rate){
+	  System.out.println("PWMJNI: setPWMRate()");
+  }
 
-  public static native void setPWMRate(double rate);
+  public static void setPWMDutyCycle(long pwmGenerator, double dutyCycle){
+	  System.out.println("PWMJNI: setPWMDutyCycle()");
+  }
 
-  public static native void setPWMDutyCycle(long pwmGenerator, double dutyCycle);
-
-  public static native void setPWMOutputChannel(long pwmGenerator, int pin);
+  public static void setPWMOutputChannel(long pwmGenerator, int pin){
+	  System.out.println("PWMJNI: setPWMOutputChannel()");
+  }
 }

@@ -261,6 +261,7 @@ public abstract class RobotBase {
 			DriverStation.reportError(
 					"ERROR Unhandled exception: " + t.toString() + " at "
 							+ Arrays.toString(t.getStackTrace()), false);
+			System.err.println("ERROR Unhandled exception: " + t.toString() + " at " + Arrays.toString(t.getStackTrace()));
 			errorOnExit = true;
 		} finally {
 			// startCompetition never returns unless exception occurs....

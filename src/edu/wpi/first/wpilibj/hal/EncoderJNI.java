@@ -10,32 +10,62 @@ package edu.wpi.first.wpilibj.hal;
 import java.nio.IntBuffer;
 
 public class EncoderJNI extends JNIWrapper {
-  public static native long initializeEncoder(byte port_a_module, int port_a_pin,
+  public static long initializeEncoder(byte port_a_module, int port_a_pin,
       boolean port_a_analog_trigger, byte port_b_module, int port_b_pin, boolean port_b_analog_trigger,
-      boolean reverseDirection, IntBuffer index);
+      boolean reverseDirection, IntBuffer index){
+	  System.out.println("EncoderJNI: initializeEncoder()");
+	  return 1;
+  }
 
-  public static native void freeEncoder(long encoder_pointer);
+  public static void freeEncoder(long encoder_pointer){
+	  System.out.println("EncoderJNI: freeEncoder()");
+  }
 
-  public static native void resetEncoder(long encoder_pointer);
+  public static void resetEncoder(long encoder_pointer){
+	  System.out.println("EncoderJNI: resetEncoder()");
+  }
 
-  public static native int getEncoder(long encoder_pointer);
+  public static int getEncoder(long encoder_pointer){
+	  System.out.println("EncoderJNI: getEncoder()");
+	  return 0;
+  }
 
-  public static native double getEncoderPeriod(long encoder_pointer);
+  public static double getEncoderPeriod(long encoder_pointer){
+	  System.out.println("EncoderJNI: getEncoderPeriod()");
+	  return 1;
+  }
 
-  public static native void setEncoderMaxPeriod(long encoder_pointer, double maxPeriod);
+  public static void setEncoderMaxPeriod(long encoder_pointer, double maxPeriod){
+	  System.out.println("EncoderJNI: setEncoderMaxPeriod()");
+  }
 
-  public static native boolean getEncoderStopped(long encoder_pointer);
+  public static boolean getEncoderStopped(long encoder_pointer){
+	  System.out.println("EncoderJNI: getEncoderStopped()");
+	  return true;
+  }
 
-  public static native boolean getEncoderDirection(long encoder_pointer);
+  public static boolean getEncoderDirection(long encoder_pointer){
+	  System.out.println("EncoderJNI: getEncoderDirection()");
+	  return true;
+  }
 
-  public static native void setEncoderReverseDirection(long encoder_pointer,
-      boolean reverseDirection);
+  public static void setEncoderReverseDirection(long encoder_pointer,
+      boolean reverseDirection){
+    	  System.out.println("EncoderJNI: setEncoderReverseDirection()");
+      }
 
-  public static native void setEncoderSamplesToAverage(long encoder_pointer,
-      int samplesToAverage);
+  public static void setEncoderSamplesToAverage(long encoder_pointer,
+      int samplesToAverage){
+    	  System.out.println("EncoderJNI: setEncoderSamplesToAverage()");
+      }
 
-  public static native int getEncoderSamplesToAverage(long encoder_pointer);
+  public static int getEncoderSamplesToAverage(long encoder_pointer){
+	  System.out.println("EncoderJNI: getEncoderSamplesToAverage()");
+	  return 1;
+  }
 
-  public static native void setEncoderIndexSource(long digital_port, int pin,
-      boolean analogTrigger, boolean activeHigh, boolean edgeSensitive);
+  public static void setEncoderIndexSource(long digital_port, int pin,
+      boolean analogTrigger, boolean activeHigh, boolean edgeSensitive){
+    	  System.out.println("EncoderJNI: setEncoderIndexSource()");
+      }
 }

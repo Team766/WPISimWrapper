@@ -20,13 +20,16 @@ public class JNIWrapper {
   static File jniLibrary = null;
   
   public static long getPortWithModule(byte module, byte pin){
+	  System.out.println("JNIWrapper: getPortWithModule()");
 	  return (module*7) + getPort(pin);
   }
 
   public static long getPort(byte pin){
+	  System.out.println("JNIWrapper: getPort()");
 	  return (long)pin;
   }
 
   public static void freePort(long port_pointer){
+	  System.out.println("JNIWrapper: freePort()");
   }
 }
