@@ -10,23 +10,19 @@ package edu.wpi.first.wpilibj;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.jar.Manifest;
-import java.util.Arrays;
 
 import com.team766.simulator.VRConnector;
+import com.team766.simulator.Controller;
 
-import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary;
 import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tInstances;
 import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tResourceType;
 import edu.wpi.first.wpilibj.communication.UsageReporting;
 import edu.wpi.first.wpilibj.internal.HardwareHLUsageReporting;
 import edu.wpi.first.wpilibj.internal.HardwareTimer;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
-import edu.wpi.first.wpilibj.Utility;
 
 /**
  * Implement a Robot Program framework. The RobotBase class is intended to be
@@ -177,7 +173,7 @@ public abstract class RobotBase {
 		// Set some implementations so that the static methods work properly
 		Timer.SetImplementation(new HardwareTimer());
 		HLUsageReporting.SetImplementation(new HardwareHLUsageReporting());
-		RobotState.SetImplementation(DriverStation.getInstance());
+		//RobotState.SetImplementation(DriverStation.getInstance());
 	}
 
 	/**
@@ -185,6 +181,7 @@ public abstract class RobotBase {
 	 */
 	public static void main(String args[]) {
 		startSimulator();
+		startController();
 		initializeHardwareConfiguration();
 
 		UsageReporting.report(tResourceType.kResourceType_Language, tInstances.kLanguage_Java);
@@ -286,5 +283,9 @@ public abstract class RobotBase {
 		}
 
 		new Thread(VRConnector.getInstance()).start();
+	}
+	
+	private static void startController(){
+		new Thread(new Controller()).start();
 	}
 }

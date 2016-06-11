@@ -436,10 +436,12 @@ public class DriverStation implements RobotState.Interface {
    *
    * @return True if the robot is enabled, false otherwise.
    */
+  
   public boolean isEnabled() {
     HALControlWord controlWord = FRCNetworkCommunicationsLibrary.HALGetControlWord();
     return controlWord.getEnabled() && controlWord.getDSAttached();
   }
+  
 
   /**
    * Gets a value indicating whether the Driver Station requires the robot to be

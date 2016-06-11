@@ -11,6 +11,8 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
 
+import com.team766.simulator.Controller;
+
 import edu.wpi.first.wpilibj.hal.JNIWrapper;
 
 /**
@@ -190,8 +192,12 @@ public class FRCNetworkCommunicationsLibrary extends JNIWrapper {
 
   public static HALControlWord HALGetControlWord() {
     int word = NativeHALGetControlWord();
-    return new HALControlWord((word & 1) != 0, ((word >> 1) & 1) != 0, ((word >> 2) & 1) != 0,
-        ((word >> 3) & 1) != 0, ((word >> 4) & 1) != 0, ((word >> 5) & 1) != 0);
+    
+//    return new HALControlWord((word & 1) != 0, ((word >> 1) & 1) != 0, ((word >> 2) & 1) != 0,
+//        ((word >> 3) & 1) != 0, ((word >> 4) & 1) != 0, ((word >> 5) & 1) != 0);
+    
+  //HALControlWord(bol enabled, bol autonomous, bol test, bol EmergencyStop, bol FMSAttached, bol DriverStationAttached)
+    return new HALControlWord(Controller.getEnabled(), Controller.getAutonomous(), Controller.getTest(), Controller.getEStop(), true, true);
   }
 
   private static native int NativeHALGetAllianceStation();
