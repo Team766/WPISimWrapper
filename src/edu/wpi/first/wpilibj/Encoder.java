@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.tables.ITable;
 import edu.wpi.first.wpilibj.util.BoundaryException;
 
 /**
- * Class to read quad encoders. Quadrature encoders are devices that count shaft
+ * Class to read quad encoders. Quadrature4 encoders are devices that count shaft
  * rotation and can sense direction. The output of the QuadEncoder class is an
  * integer that can count either up or down, and can go negative for reverse
  * direction counting. When creating QuadEncoders, a direction is supplied that

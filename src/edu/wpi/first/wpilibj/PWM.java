@@ -109,7 +109,7 @@ public class PWM extends SensorBase implements LiveWindowSendable {
    *        MXP port
    */
   private void initPWM(final int channel) {
-    checkPWMChannel(channel);
+	checkPWMChannel(channel);	//Checks if in bounds: 0-20
     m_channel = channel;
 
     m_port = DIOJNI.initializeDigitalPort(DIOJNI.getPort((byte) m_channel));

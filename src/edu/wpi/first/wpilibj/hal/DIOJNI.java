@@ -10,7 +10,7 @@ package edu.wpi.first.wpilibj.hal;
 public class DIOJNI extends JNIWrapper {
   public static long initializeDigitalPort(long port_pointer){
 	  System.out.println("DIOJNI: initializeDigitalPort()");
-	  return 0;
+	  return port_pointer;
   }
 
   public static void freeDigitalPort(long port_pointer){
