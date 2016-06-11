@@ -7,6 +7,9 @@
 
 package edu.wpi.first.wpilibj.hal;
 
+import com.team766.simulator.Ports;
+import com.team766.simulator.VRConnector;
+
 public class PWMJNI extends DIOJNI {
   public static boolean allocatePWMChannel(long digital_port_pointer){
 	  System.out.println("PWMJNI: allocatePWMChannel()");
@@ -19,6 +22,10 @@ public class PWMJNI extends DIOJNI {
 
   public static void setPWM(long digital_port_pointer, short value){
 	  System.out.println("PWMJNI: setPWM()");
+	  if(digital_port_pointer == Ports.PWM_Left_Drive)
+		  VRConnector.getInstance().putCommandFloat(VRConnector.LEFT_MOTOR, (float)value);
+	  else if(digital_port_pointer == Ports.PWM_Left_Drive)
+		  VRConnector.getInstance().putCommandFloat(VRConnector.RIGHT_MOTOR, (float)value);
   }
 
   public static short getPWM(long digital_port_pointer){
