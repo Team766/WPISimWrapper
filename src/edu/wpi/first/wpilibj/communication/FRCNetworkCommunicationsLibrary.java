@@ -12,6 +12,7 @@ import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
 
 import com.team766.simulator.Controller;
+import com.team766.simulator.VRConnector;
 
 import edu.wpi.first.wpilibj.hal.JNIWrapper;
 
@@ -173,7 +174,11 @@ public class FRCNetworkCommunicationsLibrary extends JNIWrapper {
   public static void FRCNetworkCommunicationObserveUserProgramStarting(){}
 
   //Disabled
-  public static void FRCNetworkCommunicationObserveUserProgramDisabled(){}
+  public static void FRCNetworkCommunicationObserveUserProgramDisabled(){
+	  //Stop Driving!
+	  VRConnector.getInstance().putCommandFloat(VRConnector.LEFT_MOTOR, 0f);
+	  VRConnector.getInstance().putCommandFloat(VRConnector.RIGHT_MOTOR, 0f);
+  }
 
   //Auton
   public static void FRCNetworkCommunicationObserveUserProgramAutonomous(){}

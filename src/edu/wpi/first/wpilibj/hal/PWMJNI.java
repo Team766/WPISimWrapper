@@ -20,12 +20,20 @@ public class PWMJNI extends DIOJNI {
 	  System.out.println("PWMJNI: freePWMChannel()");
   }
 
-  public static void setPWM(long digital_port_pointer, short value){
-	  System.out.println("PWMJNI: setPWM()");
-	  if(digital_port_pointer == Ports.PWM_Left_Drive)
+  public static void setPWM(long digital_port_pointer, double value){
+//	 System.out.println("PWMJNI: setPWM()");
+	  
+	  //Cap values between [-1, 1]
+//	  value = Math.abs(value) > 1? 1.0 * (Math.abs(value)/value) : value ;
+	  
+	  if(digital_port_pointer == Ports.PWM_Left_Drive){
 		  VRConnector.getInstance().putCommandFloat(VRConnector.LEFT_MOTOR, (float)value);
-	  else if(digital_port_pointer == Ports.PWM_Left_Drive)
+//		  System.out.println("Left Drive: " + value);
+	  }
+	  else if(digital_port_pointer == Ports.PWM_Right_Drive){
 		  VRConnector.getInstance().putCommandFloat(VRConnector.RIGHT_MOTOR, (float)value);
+//		  System.out.println("Right Drive: " + value);
+	  }
   }
 
   public static short getPWM(long digital_port_pointer){

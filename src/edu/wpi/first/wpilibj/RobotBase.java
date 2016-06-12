@@ -181,6 +181,7 @@ public abstract class RobotBase {
 	 */
 	public static void main(String args[]) {
 		startSimulator();
+		resetField();
 		startController();
 		initializeHardwareConfiguration();
 
@@ -283,6 +284,15 @@ public abstract class RobotBase {
 		}
 
 		new Thread(VRConnector.getInstance()).start();
+	}
+	
+	private static void resetField(){
+		VRConnector.getInstance().putCommandBool(VRConnector.RESET_SIM, true);
+		 		
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\nRESETING FIELD!!!\n\n\n\n\n\n\n\n\n\n\n\n");
+		 		try {
+					Thread.sleep(1000);
+		 		} catch (InterruptedException e) {}
 	}
 	
 	private static void startController(){

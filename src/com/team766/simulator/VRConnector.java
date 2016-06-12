@@ -9,10 +9,10 @@ import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 
-public class VRConnector implements Runnable{
+public class VRConnector implements Runnable {
+	public static final boolean SIMULATOR = true;
 	private static VRConnector instance_;
 
-	
 	// Command indexes
 	public static final int RESET_SIM = 0;
 
@@ -48,12 +48,12 @@ public class VRConnector implements Runnable{
 			}
 		return instance_;
 	}
-	
-	public int getFeedback(int index) {
+
+	public synchronized int getFeedback(int index) {
 		return feedback.getInt(index * 4);
 	}
 
-	public void putCommand(int index, int value) {
+	public synchronized void putCommand(int index, int value) {
 		commands.putInt(index * 4, value);
 	}
 
@@ -79,7 +79,7 @@ public class VRConnector implements Runnable{
 		feedback.order(ByteOrder.LITTLE_ENDIAN);
 	}
 
-	public boolean process() throws IOException {
+	public synchronized boolean process() throws IOException {
 		selector.selectedKeys().clear();
 		selector.selectNow();
 		boolean newData = false;
@@ -102,13 +102,13 @@ public class VRConnector implements Runnable{
 		}
 		return newData;
 	}
-	
-	public void run(){
-		while(true){
+
+	public void run() {
+		while (true) {
 			try {
-				process();
+				VRConnector.getInstance().process();
 				Thread.sleep(33);
-			}catch(Exception e){
+			} catch (Exception e) {
 			}
 		}
 	}

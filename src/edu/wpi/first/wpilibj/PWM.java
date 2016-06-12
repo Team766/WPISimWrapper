@@ -282,7 +282,10 @@ public class PWM extends SensorBase implements LiveWindowSendable {
     } else if (speed > 1.0) {
       speed = 1.0;
     }
-
+    
+    setRaw(speed);
+    
+    /*
     // calculate the desired output pwm value by scaling the speed appropriately
     int rawValue;
     if (speed == 0.0) {
@@ -297,6 +300,7 @@ public class PWM extends SensorBase implements LiveWindowSendable {
 
     // send the computed pwm value to the FPGA
     setRaw(rawValue);
+    */
   }
 
   /**
@@ -333,8 +337,8 @@ public class PWM extends SensorBase implements LiveWindowSendable {
    *
    * @param value Raw PWM value. Range 0 - 255.
    */
-  public void setRaw(int value) {
-    PWMJNI.setPWM(m_port, (short) value);
+  public void setRaw(double value) {
+    PWMJNI.setPWM(m_port, value);
   }
 
   /**
