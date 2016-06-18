@@ -25,6 +25,7 @@ public class Controller implements Runnable{
 			if(on.equalsIgnoreCase("e"))
 				enabled = true;
 			else if(on.equalsIgnoreCase("d"))
+				
 				enabled = false;
 			System.out.println("Which state would you like to simulate?\na.\tOperator Control\nb.\tAutonomous\nc.\tTest");
 			String in = keyboard.nextLine();
