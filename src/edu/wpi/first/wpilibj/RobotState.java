@@ -8,7 +8,7 @@
 package edu.wpi.first.wpilibj;
 
 import edu.wpi.first.wpilibj.util.BaseSystemNotInitializedException;
-import com.team766.simulator.Controller;
+import com.team766.simulator.ControllerOld;
 
 public class RobotState {
   private static Interface impl;
@@ -18,23 +18,23 @@ public class RobotState {
   }
 
   public static boolean isDisabled() {
-	  return Controller.getDisabled();
+	  return ControllerOld.getDisabled();
   }
 
   public static boolean isEnabled() {
-	  return Controller.getEnabled();
+	  return ControllerOld.getEnabled();
   }
 
   public static boolean isOperatorControl() {
-	  return Controller.getOperatorControl();
+	  return ControllerOld.getOperatorControl();
   }
 
   public static boolean isAutonomous() {
-	  return Controller.getAutonomous();
+	  return ControllerOld.getAutonomous();
   }
 
   public static boolean isTest() {
-	  return Controller.getTest();
+	  return ControllerOld.getTest();
   }
 
   interface Interface {

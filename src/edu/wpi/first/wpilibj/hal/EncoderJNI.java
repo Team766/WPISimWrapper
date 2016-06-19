@@ -9,12 +9,20 @@ package edu.wpi.first.wpilibj.hal;
 
 import java.nio.IntBuffer;
 
+import com.team766.simulator.Ports;
+import com.team766.simulator.VRConnector;
+
 public class EncoderJNI extends JNIWrapper {
   public static long initializeEncoder(byte port_a_module, int port_a_pin,
       boolean port_a_analog_trigger, byte port_b_module, int port_b_pin, boolean port_b_analog_trigger,
       boolean reverseDirection, IntBuffer index){
 	  System.out.println("EncoderJNI: initializeEncoder()");
-	  return 1;
+	  
+	  //Turn channels into string
+	  String out = port_a_pin + "" + port_b_pin;
+	  out = ("" + String.valueOf(port_a_pin).length()) + out;
+	  
+	  return Long.parseLong(out);
   }
 
   public static void freeEncoder(long encoder_pointer){
@@ -27,6 +35,20 @@ public class EncoderJNI extends JNIWrapper {
 
   public static int getEncoder(long encoder_pointer){
 	  System.out.println("EncoderJNI: getEncoder()");
+	  
+	  /*
+	   * DIO_LDriveEncA = 0, 
+	   * DIO_LDriveEncB = 1,
+	   * DIO_RDriveEncA = 2, 
+	   * DIO_RDriveEncB = 3;
+	   */
+	  
+	  //Left: 101
+	  if(encoder_pointer == 101l)
+	  	return (int)(VRConnector.getInstance().getFeedback(VRConnector.LEFT_ENCODER) * (256.0/360.0));
+	  //Right: 101
+	  else if(encoder_pointer == 123l)
+	  	return (int)(VRConnector.getInstance().getFeedback(VRConnector.RIGHT_ENCODER) * (256.0/360.0));
 	  return 0;
   }
 

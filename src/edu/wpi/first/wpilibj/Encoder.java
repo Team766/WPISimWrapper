@@ -391,7 +391,8 @@ public class Encoder extends SensorBase implements CounterBase, PIDSource, LiveW
     } else {
       value = EncoderJNI.getEncoder(m_encoder);
     }
-    return value;
+    //return value;
+    return EncoderJNI.getEncoder(m_encoder);
   }
 
   /**
