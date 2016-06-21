@@ -1,9 +1,13 @@
 package com.team766.simulator;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,11 +16,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.text.DefaultCaret;
+import javax.swing.Timer;
 
 public class Controller extends JFrame implements Runnable {
 	private static boolean enabled;
+	public boolean isClicked;
 
 	private enum RobotState {
 		OperatorControl, Autonomous, Test
@@ -31,6 +38,9 @@ public class Controller extends JFrame implements Runnable {
 	public Controller(String title) {
 		super(title);
 
+		isClicked = false;
+		
+		
 		state = RobotState.OperatorControl;
 		enabled = false;
 
@@ -65,7 +75,13 @@ public class Controller extends JFrame implements Runnable {
 
 		setJMenuBar(menuBar);
 		
+		JSlider four = new JSlider(JSlider.VERTICAL);
+		JSlider twenty = new JSlider(JSlider.VERTICAL);
 
+		
+		
+		
+		
 		JButton b1 = new JButton("Enable/Disable");
 		JButton b2 = new JButton("Test/Autonomous/Operator Control");
 
@@ -87,6 +103,7 @@ public class Controller extends JFrame implements Runnable {
 		//add(t1);
 		add(b2);
 		add(l1);
+		add(four);
 
 		ActionListener a1 = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,10 +151,51 @@ public class Controller extends JFrame implements Runnable {
 
 			}
 		};
+		
+		MouseListener a4 = new MouseListener(){
+			
+			public void mouseClicked(MouseEvent e){
+			}
+			public void mouseEntered(MouseEvent e){
+			}
+			public void mouseExited(MouseEvent e){
+			}
+			public void mousePressed(MouseEvent e){
+				isClicked = true;
+			}
+			public void mouseReleased(MouseEvent e){
+				isClicked = false;
+			}
+		};
+		
+		
+		Timer timer = new Timer(50, new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				double speed = 1;
+				final double ACCELERATION = .1;
+				int dist = Math.abs(four.getValue()-50);
+				
+				if(four.getValue()-50>speed){
+					four.setValue((int)(four.getValue()-speed));
+					speed += ACCELERATION;
+				}else if(four.getValue()-50<-speed){
+					four.setValue((int)(four.getValue()+speed));
+					speed += ACCELERATION;
+				}else{
+					four.setValue(50);
+				}
+			}
+		});
 
+		timer.start();
+		
+		
 		b1.addActionListener(a1);
 		b2.addActionListener(a3);
 		m1.addActionListener(a2);
+		
+		four.addMouseListener(a4);
+	
 	}
 
 	public void run() {
