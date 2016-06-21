@@ -7,6 +7,9 @@
 
 package edu.wpi.first.wpilibj.hal;
 
+import com.team766.simulator.Ports;
+import com.team766.simulator.VRConnector;
+
 public class DIOJNI extends JNIWrapper {
   public static long initializeDigitalPort(long port_pointer){
 	  System.out.println("DIOJNI: initializeDigitalPort()");
@@ -31,8 +34,12 @@ public class DIOJNI extends JNIWrapper {
   }
 
   public static boolean getDIO(long digital_port_pointer){
-	  System.out.println("DIOJNI: getDIO()");
-	  return true;
+	  System.out.println("DIOJNI: getDIO()");  
+	  
+	  if(digital_port_pointer == Ports.DIO_BallPresence)
+		  return VRConnector.getInstance().getFeedback(VRConnector.BALL_PRESENCE) == 0; //Flipped from simulator
+
+	  return false;
   }
 
   public static boolean getDIODirection(long digital_port_pointer){

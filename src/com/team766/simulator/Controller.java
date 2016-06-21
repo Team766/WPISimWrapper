@@ -24,7 +24,8 @@ import javax.swing.Timer;
 public class Controller extends JFrame implements Runnable {
 	private static boolean enabled;
 	public boolean isClicked;
-
+	public static JSlider four, twenty;
+ 
 	private enum RobotState {
 		OperatorControl, Autonomous, Test
 	}
@@ -75,8 +76,8 @@ public class Controller extends JFrame implements Runnable {
 
 		setJMenuBar(menuBar);
 		
-		JSlider four = new JSlider(JSlider.VERTICAL);
-		JSlider twenty = new JSlider(JSlider.VERTICAL);
+		four = new JSlider(JSlider.VERTICAL);
+		twenty = new JSlider(JSlider.VERTICAL);
 
 		
 		
@@ -104,6 +105,7 @@ public class Controller extends JFrame implements Runnable {
 		add(b2);
 		add(l1);
 		add(four);
+		add(twenty);
 
 		ActionListener a1 = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -169,32 +171,45 @@ public class Controller extends JFrame implements Runnable {
 		};
 		
 		
-		Timer timer = new Timer(50, new ActionListener(){
+		
+		ActionListener a = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				double speed = 1;
-				final double ACCELERATION = .1;
-				int dist = Math.abs(four.getValue()-50);
-				
-				if(four.getValue()-50>speed){
-					four.setValue((int)(four.getValue()-speed));
-					speed += ACCELERATION;
-				}else if(four.getValue()-50<-speed){
-					four.setValue((int)(four.getValue()+speed));
-					speed += ACCELERATION;
+				final int SPEED = 3;
+				if(four.getValue()-50>SPEED){
+					four.setValue(four.getValue() - SPEED);
+				}else if(four.getValue()-50<-SPEED){
+					four.setValue((four.getValue()+SPEED));
 				}else{
 					four.setValue(50);
 				}
 			}
-		});
+		};
+		
+		ActionListener a5 = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				final int SPEED = 3;
+				if(twenty.getValue()-50>SPEED){
+					twenty.setValue(twenty.getValue() - SPEED);
+				}else if(twenty.getValue()-50<-SPEED){
+					twenty.setValue((twenty.getValue()+SPEED));
+				}else{
+					twenty.setValue(50);
+				}
+			}
+		};
+		
+		
+		Timer timer = new Timer(50, a);
+		Timer timer1 = new Timer(50,a5);
 
 		timer.start();
+		timer1.start();
 		
 		
 		b1.addActionListener(a1);
 		b2.addActionListener(a3);
 		m1.addActionListener(a2);
 		
-		four.addMouseListener(a4);
 	
 	}
 
@@ -215,7 +230,7 @@ public class Controller extends JFrame implements Runnable {
 	}
 
 	public static boolean getDisabled() {
-		return enabled;
+		return !enabled;
 	}
 
 	public static boolean getEnabled() {
@@ -237,4 +252,12 @@ public class Controller extends JFrame implements Runnable {
 	public static boolean getEStop() {
 		return false;
 	}
+	public static int getSlider4(){
+		return four.getValue();
+	}
+	
+	public static int getSlider20(){
+		return twenty.getValue();
+	}
+	
 }

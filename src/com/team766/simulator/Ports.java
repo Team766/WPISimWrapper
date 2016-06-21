@@ -10,4 +10,7 @@ public class Ports {
 							DIO_LDriveEncB = 1,
 							DIO_RDriveEncA = 2, 
 							DIO_RDriveEncB = 3;
+	
+	//Limit Switches
+	public static final int DIO_BallPresence = 4;
 }
